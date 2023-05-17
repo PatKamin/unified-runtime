@@ -1,0 +1,82 @@
+name: "CodeQL"
+
+on:
+  push:
+    paths:
+      - '**/*.c'
+      - '**/*.cpp'
+      - '**/*.h'
+      - '**/*.hpp'
+      - '**/*.py'
+      - '**/*.yml'
+  pull_request:
+    paths:
+      - '**/*.c'
+      - '**/*.cpp'
+      - '**/*.h'
+      - '**/*.hpp'
+      - '**/*.py'
+
+jobs:
+  analyze-ubuntu:
+    name: Analyze on Ubuntu
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'cpp', 'python' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
+
+  analyze-windows:
+    name: Analyze on Windows
+    runs-on: windows-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'cpp', 'python' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Configure CMake
+      run: cmake -DCMAKE_POLICY_DEFAULT_CMP0094=NEW -B ${{github.workspace}}/build
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config Release
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
