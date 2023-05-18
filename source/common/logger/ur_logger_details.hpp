@@ -27,6 +27,19 @@ class Logger {
         }
     }
 
+    Logger(Logger &&other) noexcept
+        : level(other.level), sink(std::move(other.sink)) {}
+
+    Logger &operator=(Logger &&other) {
+        if (this != &other) {
+            this->sink.reset(other.sink.release());
+            this->level = other.level;
+
+            other.level = logger::Level::QUIET;
+        }
+        return *this;
+    }
+
     ~Logger() = default;
 
     void setLevel(logger::Level level) { this->level = level; }
