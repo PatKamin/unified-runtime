@@ -2,7 +2,8 @@ name: Nightly
 
 on:
   schedule:
-    - cron: '0 23 * * *'
+    # Run every day at 23:00 UTC
+    - cron: '0/5 * * * *'
 
 jobs:
   long-fuzz-test:
@@ -29,10 +30,6 @@ jobs:
         mkdir dpcpp_compiler
         tar -xvf ${{github.workspace}}/dpcpp_compiler.tar.gz -C dpcpp_compiler
 
-    - name: Setup DPC++
-      run: |
-        source ${{github.workspace}}/dpcpp_compiler/startup.sh
-
     - name: Configure CMake
       run: >
         cmake
@@ -47,7 +44,9 @@ jobs:
         -DUR_DPCXX=${{github.workspace}}/dpcpp_compiler/bin/clang++
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build -j $(nproc)
+      run: >
+        LD_LIBRARY_PATH=${{github.workspace}}/dpcpp_compiler/lib
+        cmake --build ${{github.workspace}}/build -j $(nproc)
 
     - name: Fuzz long test
       working-directory: ${{github.workspace}}/build
