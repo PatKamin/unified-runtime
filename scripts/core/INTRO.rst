@@ -151,6 +151,8 @@ Printing API
 The header "${x}_print.hpp" contains the "${x}::print" namespace with the output stream operator (<<) overloads for Unified Runtime objects.
 There is also the "${x}::extras::printFunctionParams" function for printing function parameters. These parameters have to be provided in a \*params_t struct format suitable for
 a given function.
+
+The ${x}_print.h header provides the same functionality with a C interface.
 ## --validate=on
 
 Tracing
