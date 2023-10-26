@@ -9,7 +9,7 @@ from templates import helper as th
     X=x.upper()
 %>/*
  *
- * Copyright (C) 2023 Intel Corporation
+ * Copyright (C) 2023-2024 Intel Corporation
  *
  * Part of the Unified-Runtime Project, under the Apache License v2.0 with LLVM Exceptions.
  * See LICENSE.TXT
@@ -35,8 +35,6 @@ extern "C" {
     /// @brief Print ${th.make_enum_name(n, tags, obj)} enum
     /// @returns
     ///     - ::${X}_RESULT_SUCCESS
-    ///     - ::${X}_RESULT_ERROR_INVALID_NULL_POINTER
-    ///         - `NULL == buffer`
     ///     - ::${X}_RESULT_ERROR_INVALID_SIZE
     ///         - `buff_size < out_size`
     ${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${th.make_func_name_with_prefix(f'{x}Print', obj['name'])}(enum ${th.make_enum_name(n, tags, obj)} value, char *buffer, const size_t buff_size, size_t *out_size);
@@ -46,8 +44,6 @@ extern "C" {
     /// @brief Print ${th.make_type_name(n, tags, obj)} struct
     /// @returns
     ///     - ::${X}_RESULT_SUCCESS
-    ///     - ::${X}_RESULT_ERROR_INVALID_NULL_POINTER
-    ///         - `NULL == buffer`
     ///     - ::${X}_RESULT_ERROR_INVALID_SIZE
     ///         - `buff_size < out_size`
     ${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${th.make_func_name_with_prefix(f'{x}Print', obj['name'])}(const ${obj['type']} ${th.make_type_name(n, tags, obj)} params, char *buffer, const size_t buff_size, size_t *out_size);
@@ -65,8 +61,6 @@ extern "C" {
 /// @brief Print ${th.make_pfncb_param_type(n, tags, obj)} params struct
 /// @returns
 ///     - ::${X}_RESULT_SUCCESS
-///     - ::${X}_RESULT_ERROR_INVALID_NULL_POINTER
-///         - `NULL == buffer`
 ///     - ::${X}_RESULT_ERROR_INVALID_SIZE
 ///         - `buff_size < out_size`
 ${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${th.make_func_name_with_prefix(f'{x}Print', name)}(const struct ${th.make_pfncb_param_type(n, tags, obj)} *params, char *buffer, const size_t buff_size, size_t *out_size);
@@ -80,7 +74,6 @@ ${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${th.make_func_name_with_prefix(f'{x}P
 ///     - ::${X}_RESULT_ERROR_INVALID_ENUMERATION
 ///     - ::${X}_RESULT_ERROR_INVALID_NULL_POINTER
 ///         - `NULL == params`
-///         - `NULL == buffer`
 ///     - ::${X}_RESULT_ERROR_INVALID_SIZE
 ///         - `buff_size < out_size`
 ${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${x}PrintFunctionParams(enum ${x}_function_t function, const void *params, char *buffer, const size_t buff_size, size_t *out_size);
