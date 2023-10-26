@@ -264,3 +264,68 @@ ${th.make_type_name(n, tags, obj)}
 %endfor # obj in objects
 
 %endfor # s in specs
+
+#################################################################
+## Print API not part of the spec, needs to be generated separately
+#################################################################
+<%
+    x = tags['$x']
+%>
+## Generate Print links table
+Print
+============================================================
+* Functions
+%for s in specs:
+%for obj in s['objects']:
+%if re.match(r"enum", obj['type']) or re.match(r"struct", obj['type']):
+    * :ref:`${th.make_func_name_with_prefix(f'{x}Print', obj['name'])}`
+%endif
+%endfor # obj in objects
+%endfor # s in specs
+
+## Params of functions objects
+%for tbl in th.get_pfncbtables(specs, meta, namespace, tags):
+%for obj in tbl['functions']:
+<%
+    name = th.make_pfncb_param_type(namespace, tags, obj)
+%>\
+    * :ref:`${th.make_func_name_with_prefix(f'{x}Print', name)}`
+%endfor
+%endfor
+## 'Extras' functions
+    * :ref:`${x}PrintFunctionParams`
+
+<%def name="generate_api_doc(func_name)">\
+.. _${func_name.replace("_", "-")}:
+
+${func_name}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. doxygenfunction:: ${func_name}
+    :project: UnifiedRuntime
+</%def>
+## Generate Print API documentation
+Print Functions
+------------------------------------------------------------------------------
+%for s in specs:
+%for obj in s['objects']:
+%if re.match(r"enum", obj['type']) or re.match(r"struct", obj['type']):
+<%
+    func_name = th.make_func_name_with_prefix(f'{x}Print', obj['name'])
+%>
+${generate_api_doc(func_name)}
+%endif
+%endfor # obj in objects
+%endfor # s in specs
+
+%for tbl in th.get_pfncbtables(specs, meta, namespace, tags):
+%for obj in tbl['functions']:
+<%
+    name = th.make_pfncb_param_type(namespace, tags, obj)
+    func_name = th.make_func_name_with_prefix(f'{x}Print', name)
+%>
+${generate_api_doc(func_name)}
+%endfor
+%endfor
+## 'Extras' functions
+${generate_api_doc(f'{x}PrintFunctionParams')}
