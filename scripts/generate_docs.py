@@ -209,6 +209,7 @@ def generate_rst(docpath, section, namespace, tags, ver, rev, specs, meta):
         fout = os.path.join(dstpath, "api.rst")
         groupname = os.path.basename(dstpath).capitalize()
         util.makoWrite(fin, fout,
+            namespace=namespace,
             groupname=groupname,
             ver=ver,
             rev=rev,
