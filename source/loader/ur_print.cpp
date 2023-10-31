@@ -1,6 +1,6 @@
 /*
  *
- * Copyright (C) 2023 Intel Corporation
+ * Copyright (C) 2023-2024 Intel Corporation
  *
  * Part of the Unified-Runtime Project, under the Apache License v2.0 with LLVM Exceptions.
  * See LICENSE.TXT
@@ -2495,13 +2495,9 @@ ur_result_t urPrintDeviceGetGlobalTimestampsParams(
     return str_copy(&ss, buffer, buff_size, out_size);
 }
 
-ur_result_t urPrintFunctionParams(enum ur_function_t function,
-                                  const void *params, char *buffer,
-                                  const size_t buff_size, size_t *out_size) {
-    if (!params) {
-        return UR_RESULT_ERROR_INVALID_NULL_POINTER;
-    }
-
+ur_result_t urPrintFunctionParams(ur_function_t function, const void *params,
+                                  char *buffer, const size_t buff_size,
+                                  size_t *out_size) {
     std::stringstream ss;
     ur_result_t result = ur::extras::printFunctionParams(ss, function, params);
     if (result != UR_RESULT_SUCCESS) {
