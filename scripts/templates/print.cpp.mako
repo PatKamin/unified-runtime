@@ -1,6 +1,6 @@
 <%!
 import re
-from templates import helper as th
+from templates import print_helper as tph
 %><%
     n=namespace
     N=n.upper()
@@ -50,46 +50,18 @@ ${x}_result_t str_copy(std::stringstream *ss, char *buff, const size_t buff_size
     return ${X}_RESULT_SUCCESS;
 }
 
-%for spec in specs:
-%for obj in spec['objects']:
-## ENUM #######################################################################
-%if re.match(r"enum", obj['type']):
-    ${x}_result_t ${th.make_func_name_with_prefix(f'{x}Print', obj['name'])}(enum ${th.make_enum_name(n, tags, obj)} value, char *buffer, const size_t buff_size, size_t *out_size) {
-        if (!buffer) {
-            return ${X}_RESULT_ERROR_INVALID_NULL_POINTER;
-        }
-        
-        ${ss_copy("value")}
-    }
-
-## STRUCT #####################################################################
-%elif re.match(r"struct", obj['type']):
-    ${x}_result_t ${th.make_func_name_with_prefix(f'{x}Print', obj['name'])}(const ${obj['type']} ${th.make_type_name(n, tags, obj)} params, char *buffer, const size_t buff_size, size_t *out_size) {
-        if (!buffer) {
-            return ${X}_RESULT_ERROR_INVALID_NULL_POINTER;
-        }
-        
-        ${ss_copy("params")}
-    }
-
-%endif
-%endfor # obj in spec['objects']
-%endfor
-
-%for tbl in th.get_pfncbtables(specs, meta, n, tags):
-%for obj in tbl['functions']:
 <%
-    name = th.make_pfncb_param_type(n, tags, obj)
-%>\
-${x}_result_t ${th.make_func_name_with_prefix(f'{x}Print', name)}(const struct ${th.make_pfncb_param_type(n, tags, obj)} *params, char *buffer, const size_t buff_size, size_t *out_size) {
+    api_types_funcs = tph.get_api_types_funcs(specs, meta, n, tags)
+%>
+%for func in api_types_funcs:
+${x}_result_t ${func['name']}(${",".join(func['args'])}) {
     if (!buffer) {
         return ${X}_RESULT_ERROR_INVALID_NULL_POINTER;
     }
     
-    ${ss_copy("params")}
+    ${ss_copy(func['arg_name'])}
 }
 
-%endfor
 %endfor
 
 ${x}_result_t ${x}PrintFunctionParams(enum ${x}_function_t function, const void *params, char *buffer, const size_t buff_size, size_t *out_size) {
