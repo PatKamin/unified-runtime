@@ -64,15 +64,17 @@ ${x}_result_t ${func['name']}(${",".join(func['args'])}) {
 
 %endfor
 
-${x}_result_t ${x}PrintFunctionParams(enum ${x}_function_t function, const void *params, char *buffer, const size_t buff_size, size_t *out_size) {
-    if (!params || !buffer) {
+%for func in tph.get_extras_funcs(tags):
+${x}_result_t ${func['c']['name']}(${",".join(func['c']['args'])}, char *buffer, const size_t buff_size, size_t *out_size) {
+    if (!buffer) {
         return ${X}_RESULT_ERROR_INVALID_NULL_POINTER;
     }
 
     std::stringstream ss;
-    ${x}_result_t result = ${x}::extras::printFunctionParams(ss, function, params);
+    ${x}_result_t result = ${x}::extras::${func['cpp']['name']}(ss, function, params);
     if (result != ${X}_RESULT_SUCCESS) {
         return result;
     }
     return str_copy(&ss, buffer, buff_size, out_size);
 }
+%endfor

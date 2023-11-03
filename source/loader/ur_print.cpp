@@ -3692,10 +3692,10 @@ ur_result_t urPrintDeviceGetGlobalTimestampsParams(
     return str_copy(&ss, buffer, buff_size, out_size);
 }
 
-ur_result_t urPrintFunctionParams(enum ur_function_t function,
-                                  const void *params, char *buffer,
-                                  const size_t buff_size, size_t *out_size) {
-    if (!params || !buffer) {
+ur_result_t urPrintFunctionParams(ur_function_t function, const void *params,
+                                  char *buffer, const size_t buff_size,
+                                  size_t *out_size) {
+    if (!buffer) {
         return UR_RESULT_ERROR_INVALID_NULL_POINTER;
     }
 

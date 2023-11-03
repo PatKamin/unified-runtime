@@ -271,6 +271,7 @@ ${th.make_type_name(n, tags, obj)}
 <%
     x = tags['$x']
     api_types_funcs = tph.get_api_types_funcs(specs, meta, namespace, tags)
+    extras_funcs = tph.get_extras_funcs(tags)
 %>\
 ## Generate Print links table
 Print
@@ -281,7 +282,9 @@ Print
 %endfor
 
 ## 'Extras' functions
-    * :ref:`${x}PrintFunctionParams`
+%for func in extras_funcs:
+    * :ref:`${func['c']['name']}`
+%endfor
 
 <%def name="generate_api_doc(func_name)">\
 .. _${func_name.replace("_", "-")}:
@@ -300,5 +303,7 @@ Print Functions
 ${generate_api_doc(func['name'])}
 %endfor
 
+%for func in extras_funcs:
 ## 'Extras' functions
-${generate_api_doc(f'{x}PrintFunctionParams')}
+${generate_api_doc(func['c']['name'])}
+%endfor

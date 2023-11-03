@@ -6,6 +6,7 @@
  SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
 """
+import os
 import re
 
 from templates import helper as th
@@ -70,3 +71,37 @@ def get_api_types_funcs(specs, meta, namespace, tags):
     api_types_funcs = _get_simple_types_funcs(namespace, tags, specs)
     api_types_funcs.extend(_get_param_types_funcs(specs, meta, namespace, tags))
     return api_types_funcs
+
+def get_extras_funcs(tags):
+    extras_funcs = []
+    func_comment = []
+
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'print.hpp.mako'), 'r') as file:
+        extras_namespace = False
+        for line in file:
+            if re.match('namespace extras {', line):
+                extras_namespace = True
+            elif re.match('} // namespace extras', line):
+                extras_namespace = False
+            
+            if extras_namespace:
+                if re.match('///', line):
+                    func_comment.append(line)
+                    if re.search('RESULT_ERROR_INVALID_NULL_POINTER', line):
+                        func_comment.append('///         - `NULL == buffer`\n')
+                elif re.match(r'.*_APIEXPORT .*_APICALL print\w+\(.*\)', line):
+                    func_comment.append('///     - ::${X}_RESULT_ERROR_INVALID_SIZE\n')
+                    func_comment.append('///         - `buff_size < out_size`\n')
+                    func_name = re.search(r'print\w+(?=\()', line).group(0)
+                    func_c_name = tags['$x'] + func_name[0].capitalize() + func_name[1:]
+                    func_args = re.search(r'(?<=\().*(?=\))', line).group(0).split(',')
+                    func_c_args = [arg for arg in func_args if not re.match('std::ostream', arg)]
+                    func_comment_str = "".join(func_comment)
+                    extras_funcs.append({
+                                         'c': {'name': func_c_name,
+                                               'args': func_c_args},
+                                         'cpp': {'name': func_name,
+                                                 'args': func_args},
+                                         'comment': func_comment_str})
+                    func_comment.clear()
+    return extras_funcs

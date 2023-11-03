@@ -44,18 +44,11 @@ ${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${func['name']}(${",".join(func['args'
 
 %endfor
 
-///////////////////////////////////////////////////////////////////////////////
-/// @brief Print function parameters
-/// @returns
-///     - ::${X}_RESULT_SUCCESS
-///     - ::${X}_RESULT_ERROR_INVALID_ENUMERATION
-///     - ::${X}_RESULT_ERROR_INVALID_NULL_POINTER
-///         - `NULL == params`
-///         - `NULL == buffer`
-///     - ::${X}_RESULT_ERROR_INVALID_SIZE
-///         - `buff_size < out_size`
-${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${x}PrintFunctionParams(enum ${x}_function_t function, const void *params, char *buffer, const size_t buff_size, size_t *out_size);
+%for func in tph.get_extras_funcs(tags):
+${re.sub('\$\{X\}', X, func['comment'])} \
+${X}_APIEXPORT ${x}_result_t ${X}_APICALL ${func['c']['name']}(${",".join(func['c']['args'])}, char *buffer, const size_t buff_size, size_t *out_size);
 
+%endfor
 #if defined(__cplusplus)
 } // extern "C"
 #endif

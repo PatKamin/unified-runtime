@@ -3024,11 +3024,11 @@ UR_APIEXPORT ur_result_t UR_APICALL urPrintDeviceGetGlobalTimestampsParams(const
 ///     - ::UR_RESULT_SUCCESS
 ///     - ::UR_RESULT_ERROR_INVALID_ENUMERATION
 ///     - ::UR_RESULT_ERROR_INVALID_NULL_POINTER
-///         - `NULL == params`
 ///         - `NULL == buffer`
+///         - `NULL == params`
 ///     - ::UR_RESULT_ERROR_INVALID_SIZE
 ///         - `buff_size < out_size`
-UR_APIEXPORT ur_result_t UR_APICALL urPrintFunctionParams(enum ur_function_t function, const void *params, char *buffer, const size_t buff_size, size_t *out_size);
+UR_APIEXPORT ur_result_t UR_APICALL urPrintFunctionParams(ur_function_t function, const void *params, char *buffer, const size_t buff_size, size_t *out_size);
 
 #if defined(__cplusplus)
 } // extern "C"
