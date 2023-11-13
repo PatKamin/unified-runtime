@@ -325,7 +325,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_exp_peer_info_t value);
 /// @brief Print operator for the ur_function_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_function_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_function_t value) {
     switch (value) {
     case UR_FUNCTION_CONTEXT_CREATE:
         os << "UR_FUNCTION_CONTEXT_CREATE";
@@ -889,7 +889,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_function_t value) {
 /// @brief Print operator for the ur_structure_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_structure_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_structure_type_t value) {
     switch (value) {
     case UR_STRUCTURE_TYPE_CONTEXT_PROPERTIES:
         os << "UR_STRUCTURE_TYPE_CONTEXT_PROPERTIES";
@@ -1254,7 +1254,7 @@ inline ur_result_t printStruct(std::ostream &os, const void *ptr) {
 /// @brief Print operator for the ur_result_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_result_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_result_t value) {
     switch (value) {
     case UR_RESULT_SUCCESS:
         os << "UR_RESULT_SUCCESS";
@@ -1573,7 +1573,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_rect_region_t 
 /// @brief Print operator for the ur_device_init_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_init_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_init_flag_t value) {
     switch (value) {
     case UR_DEVICE_INIT_FLAG_GPU:
         os << "UR_DEVICE_INIT_FLAG_GPU";
@@ -1670,7 +1670,7 @@ inline ur_result_t printFlag<ur_device_init_flag_t>(std::ostream &os, uint32_t f
 /// @brief Print operator for the ur_loader_config_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_loader_config_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_loader_config_info_t value) {
     switch (value) {
     case UR_LOADER_CONFIG_INFO_AVAILABLE_LAYERS:
         os << "UR_LOADER_CONFIG_INFO_AVAILABLE_LAYERS";
@@ -1754,7 +1754,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_code_location_
 /// @brief Print operator for the ur_adapter_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_adapter_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_adapter_info_t value) {
     switch (value) {
     case UR_ADAPTER_INFO_BACKEND:
         os << "UR_ADAPTER_INFO_BACKEND";
@@ -1814,7 +1814,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_adapter_inf
 /// @brief Print operator for the ur_adapter_backend_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_adapter_backend_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_adapter_backend_t value) {
     switch (value) {
     case UR_ADAPTER_BACKEND_UNKNOWN:
         os << "UR_ADAPTER_BACKEND_UNKNOWN";
@@ -1844,7 +1844,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_adapter_backend_t value) {
 /// @brief Print operator for the ur_platform_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_platform_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_platform_info_t value) {
     switch (value) {
     case UR_PLATFORM_INFO_NAME:
         os << "UR_PLATFORM_INFO_NAME";
@@ -1929,7 +1929,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_platform_in
 /// @brief Print operator for the ur_api_version_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_api_version_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_api_version_t value) {
     os << UR_MAJOR_VERSION(value) << "." << UR_MINOR_VERSION(value);
     return os;
 }
@@ -1962,7 +1962,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_platform_nativ
 /// @brief Print operator for the ur_platform_backend_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_platform_backend_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_platform_backend_t value) {
     switch (value) {
     case UR_PLATFORM_BACKEND_UNKNOWN:
         os << "UR_PLATFORM_BACKEND_UNKNOWN";
@@ -2018,7 +2018,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_device_binary_
 /// @brief Print operator for the ur_device_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_type_t value) {
     switch (value) {
     case UR_DEVICE_TYPE_DEFAULT:
         os << "UR_DEVICE_TYPE_DEFAULT";
@@ -2051,7 +2051,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_device_type_t value) {
 /// @brief Print operator for the ur_device_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_info_t value) {
     switch (value) {
     case UR_DEVICE_INFO_TYPE:
         os << "UR_DEVICE_INFO_TYPE";
@@ -4013,7 +4013,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_device_info
 /// @brief Print operator for the ur_device_affinity_domain_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_affinity_domain_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_affinity_domain_flag_t value) {
     switch (value) {
     case UR_DEVICE_AFFINITY_DOMAIN_FLAG_NUMA:
         os << "UR_DEVICE_AFFINITY_DOMAIN_FLAG_NUMA";
@@ -4123,7 +4123,7 @@ inline ur_result_t printFlag<ur_device_affinity_domain_flag_t>(std::ostream &os,
 /// @brief Print operator for the ur_device_partition_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_partition_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_partition_t value) {
     switch (value) {
     case UR_DEVICE_PARTITION_EQUALLY:
         os << "UR_DEVICE_PARTITION_EQUALLY";
@@ -4237,7 +4237,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_device_partiti
 /// @brief Print operator for the ur_device_fp_capability_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_fp_capability_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_fp_capability_flag_t value) {
     switch (value) {
     case UR_DEVICE_FP_CAPABILITY_FLAG_CORRECTLY_ROUNDED_DIVIDE_SQRT:
         os << "UR_DEVICE_FP_CAPABILITY_FLAG_CORRECTLY_ROUNDED_DIVIDE_SQRT";
@@ -4373,7 +4373,7 @@ inline ur_result_t printFlag<ur_device_fp_capability_flag_t>(std::ostream &os, u
 /// @brief Print operator for the ur_device_mem_cache_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_mem_cache_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_mem_cache_type_t value) {
     switch (value) {
     case UR_DEVICE_MEM_CACHE_TYPE_NONE:
         os << "UR_DEVICE_MEM_CACHE_TYPE_NONE";
@@ -4394,7 +4394,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_device_mem_cache_type_t val
 /// @brief Print operator for the ur_device_local_mem_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_local_mem_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_local_mem_type_t value) {
     switch (value) {
     case UR_DEVICE_LOCAL_MEM_TYPE_NONE:
         os << "UR_DEVICE_LOCAL_MEM_TYPE_NONE";
@@ -4415,7 +4415,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_device_local_mem_type_t val
 /// @brief Print operator for the ur_device_exec_capability_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_exec_capability_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_exec_capability_flag_t value) {
     switch (value) {
     case UR_DEVICE_EXEC_CAPABILITY_FLAG_KERNEL:
         os << "UR_DEVICE_EXEC_CAPABILITY_FLAG_KERNEL";
@@ -4498,7 +4498,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_device_native_
 /// @brief Print operator for the ur_memory_order_capability_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_memory_order_capability_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_memory_order_capability_flag_t value) {
     switch (value) {
     case UR_MEMORY_ORDER_CAPABILITY_FLAG_RELAXED:
         os << "UR_MEMORY_ORDER_CAPABILITY_FLAG_RELAXED";
@@ -4595,7 +4595,7 @@ inline ur_result_t printFlag<ur_memory_order_capability_flag_t>(std::ostream &os
 /// @brief Print operator for the ur_memory_scope_capability_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_memory_scope_capability_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_memory_scope_capability_flag_t value) {
     switch (value) {
     case UR_MEMORY_SCOPE_CAPABILITY_FLAG_WORK_ITEM:
         os << "UR_MEMORY_SCOPE_CAPABILITY_FLAG_WORK_ITEM";
@@ -4692,7 +4692,7 @@ inline ur_result_t printFlag<ur_memory_scope_capability_flag_t>(std::ostream &os
 /// @brief Print operator for the ur_device_usm_access_capability_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_device_usm_access_capability_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_device_usm_access_capability_flag_t value) {
     switch (value) {
     case UR_DEVICE_USM_ACCESS_CAPABILITY_FLAG_ACCESS:
         os << "UR_DEVICE_USM_ACCESS_CAPABILITY_FLAG_ACCESS";
@@ -4776,7 +4776,7 @@ inline ur_result_t printFlag<ur_device_usm_access_capability_flag_t>(std::ostrea
 /// @brief Print operator for the ur_context_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_context_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_context_flag_t value) {
     switch (value) {
     case UR_CONTEXT_FLAG_TBD:
         os << "UR_CONTEXT_FLAG_TBD";
@@ -4847,7 +4847,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_context_proper
 /// @brief Print operator for the ur_context_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_context_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_context_info_t value) {
     switch (value) {
     case UR_CONTEXT_INFO_NUM_DEVICES:
         os << "UR_CONTEXT_INFO_NUM_DEVICES";
@@ -5044,7 +5044,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_context_native
 /// @brief Print operator for the ur_mem_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_mem_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_mem_flag_t value) {
     switch (value) {
     case UR_MEM_FLAG_READ_WRITE:
         os << "UR_MEM_FLAG_READ_WRITE";
@@ -5154,7 +5154,7 @@ inline ur_result_t printFlag<ur_mem_flag_t>(std::ostream &os, uint32_t flag) {
 /// @brief Print operator for the ur_mem_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_mem_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_mem_type_t value) {
     switch (value) {
     case UR_MEM_TYPE_BUFFER:
         os << "UR_MEM_TYPE_BUFFER";
@@ -5187,7 +5187,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_mem_type_t value) {
 /// @brief Print operator for the ur_mem_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_mem_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_mem_info_t value) {
     switch (value) {
     case UR_MEM_INFO_SIZE:
         os << "UR_MEM_INFO_SIZE";
@@ -5248,7 +5248,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_mem_info_t 
 /// @brief Print operator for the ur_image_channel_order_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_image_channel_order_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_image_channel_order_t value) {
     switch (value) {
     case UR_IMAGE_CHANNEL_ORDER_A:
         os << "UR_IMAGE_CHANNEL_ORDER_A";
@@ -5305,7 +5305,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_image_channel_order_t value
 /// @brief Print operator for the ur_image_channel_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_image_channel_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_image_channel_type_t value) {
     switch (value) {
     case UR_IMAGE_CHANNEL_TYPE_SNORM_INT8:
         os << "UR_IMAGE_CHANNEL_TYPE_SNORM_INT8";
@@ -5362,7 +5362,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_image_channel_type_t value)
 /// @brief Print operator for the ur_image_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_image_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_image_info_t value) {
     switch (value) {
     case UR_IMAGE_INFO_FORMAT:
         os << "UR_IMAGE_INFO_FORMAT";
@@ -5687,7 +5687,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_buffer_region_
 /// @brief Print operator for the ur_buffer_create_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_buffer_create_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_buffer_create_type_t value) {
     switch (value) {
     case UR_BUFFER_CREATE_TYPE_REGION:
         os << "UR_BUFFER_CREATE_TYPE_REGION";
@@ -5727,7 +5727,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_mem_native_pro
 /// @brief Print operator for the ur_sampler_filter_mode_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_sampler_filter_mode_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_sampler_filter_mode_t value) {
     switch (value) {
     case UR_SAMPLER_FILTER_MODE_NEAREST:
         os << "UR_SAMPLER_FILTER_MODE_NEAREST";
@@ -5745,7 +5745,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_sampler_filter_mode_t value
 /// @brief Print operator for the ur_sampler_addressing_mode_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_sampler_addressing_mode_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_sampler_addressing_mode_t value) {
     switch (value) {
     case UR_SAMPLER_ADDRESSING_MODE_NONE:
         os << "UR_SAMPLER_ADDRESSING_MODE_NONE";
@@ -5772,7 +5772,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_sampler_addressing_mode_t v
 /// @brief Print operator for the ur_sampler_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_sampler_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_sampler_info_t value) {
     switch (value) {
     case UR_SAMPLER_INFO_REFERENCE_COUNT:
         os << "UR_SAMPLER_INFO_REFERENCE_COUNT";
@@ -5938,7 +5938,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_sampler_native
 /// @brief Print operator for the ur_usm_host_mem_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_host_mem_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_host_mem_flag_t value) {
     switch (value) {
     case UR_USM_HOST_MEM_FLAG_INITIAL_PLACEMENT:
         os << "UR_USM_HOST_MEM_FLAG_INITIAL_PLACEMENT";
@@ -5983,7 +5983,7 @@ inline ur_result_t printFlag<ur_usm_host_mem_flag_t>(std::ostream &os, uint32_t 
 /// @brief Print operator for the ur_usm_device_mem_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_device_mem_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_device_mem_flag_t value) {
     switch (value) {
     case UR_USM_DEVICE_MEM_FLAG_WRITE_COMBINED:
         os << "UR_USM_DEVICE_MEM_FLAG_WRITE_COMBINED";
@@ -6054,7 +6054,7 @@ inline ur_result_t printFlag<ur_usm_device_mem_flag_t>(std::ostream &os, uint32_
 /// @brief Print operator for the ur_usm_pool_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_pool_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_pool_flag_t value) {
     switch (value) {
     case UR_USM_POOL_FLAG_ZERO_INITIALIZE_BLOCK:
         os << "UR_USM_POOL_FLAG_ZERO_INITIALIZE_BLOCK";
@@ -6099,7 +6099,7 @@ inline ur_result_t printFlag<ur_usm_pool_flag_t>(std::ostream &os, uint32_t flag
 /// @brief Print operator for the ur_usm_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_type_t value) {
     switch (value) {
     case UR_USM_TYPE_UNKNOWN:
         os << "UR_USM_TYPE_UNKNOWN";
@@ -6123,7 +6123,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_usm_type_t value) {
 /// @brief Print operator for the ur_usm_alloc_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_alloc_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_alloc_info_t value) {
     switch (value) {
     case UR_USM_ALLOC_INFO_TYPE:
         os << "UR_USM_ALLOC_INFO_TYPE";
@@ -6230,7 +6230,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_usm_alloc_i
 /// @brief Print operator for the ur_usm_advice_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_advice_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_advice_flag_t value) {
     switch (value) {
     case UR_USM_ADVICE_FLAG_DEFAULT:
         os << "UR_USM_ADVICE_FLAG_DEFAULT";
@@ -6621,7 +6621,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_usm_pool_limit
 /// @brief Print operator for the ur_usm_pool_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_pool_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_pool_info_t value) {
     switch (value) {
     case UR_USM_POOL_INFO_REFERENCE_COUNT:
         os << "UR_USM_POOL_INFO_REFERENCE_COUNT";
@@ -6682,7 +6682,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_usm_pool_in
 /// @brief Print operator for the ur_virtual_mem_granularity_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_virtual_mem_granularity_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_virtual_mem_granularity_info_t value) {
     switch (value) {
     case UR_VIRTUAL_MEM_GRANULARITY_INFO_MINIMUM:
         os << "UR_VIRTUAL_MEM_GRANULARITY_INFO_MINIMUM";
@@ -6742,7 +6742,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_virtual_mem
 /// @brief Print operator for the ur_virtual_mem_access_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_virtual_mem_access_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_virtual_mem_access_flag_t value) {
     switch (value) {
     case UR_VIRTUAL_MEM_ACCESS_FLAG_NONE:
         os << "UR_VIRTUAL_MEM_ACCESS_FLAG_NONE";
@@ -6813,7 +6813,7 @@ inline ur_result_t printFlag<ur_virtual_mem_access_flag_t>(std::ostream &os, uin
 /// @brief Print operator for the ur_virtual_mem_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_virtual_mem_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_virtual_mem_info_t value) {
     switch (value) {
     case UR_VIRTUAL_MEM_INFO_ACCESS_MODE:
         os << "UR_VIRTUAL_MEM_INFO_ACCESS_MODE";
@@ -6859,7 +6859,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_virtual_mem
 /// @brief Print operator for the ur_physical_mem_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_physical_mem_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_physical_mem_flag_t value) {
     switch (value) {
     case UR_PHYSICAL_MEM_FLAG_TBD:
         os << "UR_PHYSICAL_MEM_FLAG_TBD";
@@ -6930,7 +6930,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_physical_mem_p
 /// @brief Print operator for the ur_program_metadata_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_program_metadata_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_program_metadata_type_t value) {
     switch (value) {
     case UR_PROGRAM_METADATA_TYPE_UINT32:
         os << "UR_PROGRAM_METADATA_TYPE_UINT32";
@@ -7068,7 +7068,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_program_proper
 /// @brief Print operator for the ur_program_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_program_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_program_info_t value) {
     switch (value) {
     case UR_PROGRAM_INFO_REFERENCE_COUNT:
         os << "UR_PROGRAM_INFO_REFERENCE_COUNT";
@@ -7218,7 +7218,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_program_inf
 /// @brief Print operator for the ur_program_build_status_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_program_build_status_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_program_build_status_t value) {
     switch (value) {
     case UR_PROGRAM_BUILD_STATUS_NONE:
         os << "UR_PROGRAM_BUILD_STATUS_NONE";
@@ -7242,7 +7242,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_program_build_status_t valu
 /// @brief Print operator for the ur_program_binary_type_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_program_binary_type_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_program_binary_type_t value) {
     switch (value) {
     case UR_PROGRAM_BINARY_TYPE_NONE:
         os << "UR_PROGRAM_BINARY_TYPE_NONE";
@@ -7266,7 +7266,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_program_binary_type_t value
 /// @brief Print operator for the ur_program_build_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_program_build_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_program_build_info_t value) {
     switch (value) {
     case UR_PROGRAM_BUILD_INFO_STATUS:
         os << "UR_PROGRAM_BUILD_INFO_STATUS";
@@ -7432,7 +7432,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_kernel_arg_loc
 /// @brief Print operator for the ur_kernel_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_kernel_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_kernel_info_t value) {
     switch (value) {
     case UR_KERNEL_INFO_FUNCTION_NAME:
         os << "UR_KERNEL_INFO_FUNCTION_NAME";
@@ -7555,7 +7555,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_kernel_info
 /// @brief Print operator for the ur_kernel_group_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_kernel_group_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_kernel_group_info_t value) {
     switch (value) {
     case UR_KERNEL_GROUP_INFO_GLOBAL_WORK_SIZE:
         os << "UR_KERNEL_GROUP_INFO_GLOBAL_WORK_SIZE";
@@ -7679,7 +7679,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_kernel_grou
 /// @brief Print operator for the ur_kernel_sub_group_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_kernel_sub_group_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_kernel_sub_group_info_t value) {
     switch (value) {
     case UR_KERNEL_SUB_GROUP_INFO_MAX_SUB_GROUP_SIZE:
         os << "UR_KERNEL_SUB_GROUP_INFO_MAX_SUB_GROUP_SIZE";
@@ -7769,7 +7769,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_kernel_sub_
 /// @brief Print operator for the ur_kernel_cache_config_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_kernel_cache_config_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_kernel_cache_config_t value) {
     switch (value) {
     case UR_KERNEL_CACHE_CONFIG_DEFAULT:
         os << "UR_KERNEL_CACHE_CONFIG_DEFAULT";
@@ -7790,7 +7790,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_kernel_cache_config_t value
 /// @brief Print operator for the ur_kernel_exec_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_kernel_exec_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_kernel_exec_info_t value) {
     switch (value) {
     case UR_KERNEL_EXEC_INFO_USM_INDIRECT_ACCESS:
         os << "UR_KERNEL_EXEC_INFO_USM_INDIRECT_ACCESS";
@@ -7978,7 +7978,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_kernel_native_
 /// @brief Print operator for the ur_queue_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_queue_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_queue_info_t value) {
     switch (value) {
     case UR_QUEUE_INFO_CONTEXT:
         os << "UR_QUEUE_INFO_CONTEXT";
@@ -8117,7 +8117,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_queue_info_
 /// @brief Print operator for the ur_queue_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_queue_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_queue_flag_t value) {
     switch (value) {
     case UR_QUEUE_FLAG_OUT_OF_ORDER_EXEC_MODE_ENABLE:
         os << "UR_QUEUE_FLAG_OUT_OF_ORDER_EXEC_MODE_ENABLE";
@@ -8394,7 +8394,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_queue_native_p
 /// @brief Print operator for the ur_command_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_command_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_command_t value) {
     switch (value) {
     case UR_COMMAND_KERNEL_LAUNCH:
         os << "UR_COMMAND_KERNEL_LAUNCH";
@@ -8490,7 +8490,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_command_t value) {
 /// @brief Print operator for the ur_event_status_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_event_status_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_event_status_t value) {
     switch (value) {
     case UR_EVENT_STATUS_COMPLETE:
         os << "UR_EVENT_STATUS_COMPLETE";
@@ -8514,7 +8514,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_event_status_t value) {
 /// @brief Print operator for the ur_event_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_event_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_event_info_t value) {
     switch (value) {
     case UR_EVENT_INFO_COMMAND_QUEUE:
         os << "UR_EVENT_INFO_COMMAND_QUEUE";
@@ -8621,7 +8621,7 @@ inline ur_result_t printTagged(std::ostream &os, const void *ptr, ur_event_info_
 /// @brief Print operator for the ur_profiling_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_profiling_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_profiling_info_t value) {
     switch (value) {
     case UR_PROFILING_INFO_COMMAND_QUEUED:
         os << "UR_PROFILING_INFO_COMMAND_QUEUED";
@@ -8751,7 +8751,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_event_native_p
 /// @brief Print operator for the ur_execution_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_execution_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_execution_info_t value) {
     switch (value) {
     case UR_EXECUTION_INFO_COMPLETE:
         os << "UR_EXECUTION_INFO_COMPLETE";
@@ -8775,7 +8775,7 @@ inline std::ostream &operator<<(std::ostream &os, ur_execution_info_t value) {
 /// @brief Print operator for the ur_map_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_map_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_map_flag_t value) {
     switch (value) {
     case UR_MAP_FLAG_READ:
         os << "UR_MAP_FLAG_READ";
@@ -8846,7 +8846,7 @@ inline ur_result_t printFlag<ur_map_flag_t>(std::ostream &os, uint32_t flag) {
 /// @brief Print operator for the ur_usm_migration_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_usm_migration_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_usm_migration_flag_t value) {
     switch (value) {
     case UR_USM_MIGRATION_FLAG_DEFAULT:
         os << "UR_USM_MIGRATION_FLAG_DEFAULT";
@@ -8891,7 +8891,7 @@ inline ur_result_t printFlag<ur_usm_migration_flag_t>(std::ostream &os, uint32_t
 /// @brief Print operator for the ur_exp_image_copy_flag_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_exp_image_copy_flag_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_exp_image_copy_flag_t value) {
     switch (value) {
     case UR_EXP_IMAGE_COPY_FLAG_HOST_TO_DEVICE:
         os << "UR_EXP_IMAGE_COPY_FLAG_HOST_TO_DEVICE";
@@ -9144,7 +9144,7 @@ inline std::ostream &operator<<(std::ostream &os, const struct ur_exp_command_bu
 /// @brief Print operator for the ur_exp_peer_info_t type
 /// @returns
 ///     std::ostream &
-inline std::ostream &operator<<(std::ostream &os, ur_exp_peer_info_t value) {
+inline std::ostream &operator<<(std::ostream &os, enum ur_exp_peer_info_t value) {
     switch (value) {
     case UR_EXP_PEER_INFO_UR_PEER_ACCESS_SUPPORTED:
         os << "UR_EXP_PEER_INFO_UR_PEER_ACCESS_SUPPORTED";

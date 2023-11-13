@@ -272,8 +272,8 @@ ${th.make_type_name(n, tags, obj)}
     x = tags['$x']
     api_types_funcs = tph.get_api_types_funcs(specs, meta, namespace, tags)
 %>\
-## Generate Print API links table
-Print
+## Generate Print C API links table
+Print C API
 ============================================================
 * Functions
 %for func in api_types_funcs:
@@ -293,7 +293,7 @@ ${func_name}
     :project: UnifiedRuntime
 </%def>
 
-## Generate Print API documentation
+## Generate Print C API documentation
 Print Functions
 ------------------------------------------------------------------------------
 %for func in api_types_funcs:
@@ -302,3 +302,42 @@ ${generate_api_doc(func.c_name)}
 
 ## 'Extras' functions
 ${generate_api_doc(f'{x}PrintFunctionParams')}
+
+## Generate Print C++ API functions links table
+Print C++ API
+============================================================
+* Functions
+## As operators don't need any special descriptions, docs for them are limited to just
+## listing their declarations. This is made to avoid making the docs page unresponsive
+## by introducing a large amount of not-so-helpful links and detailed descriptions.
+%for func in api_types_funcs:
+%if func.cpp_name != 'operator<<':
+    * :ref:`${func.cpp_name}.replace("_", "-")`
+%endif
+%endfor
+
+## 'Extras' functions
+    * :ref:`printFunctionParams`
+
+## Generate Print C++ API documentation
+Print Functions
+------------------------------------------------------------------------------
+%for func in api_types_funcs:
+%if func.cpp_name != 'operator<<':
+${generate_api_doc(func.cpp_name)}
+%endif
+%endfor
+
+## 'Extras' functions
+${generate_api_doc('printFunctionParams')}
+
+## Print the list of operators declarations
+Print Operators
+------------------------------------------------------------------------------
+%for func in api_types_funcs:
+%if func.cpp_name == 'operator<<':
+.. doxygenfunction:: ${f'{func.cpp_name}({func.cpp_args})'}
+    :project: UnifiedRuntime
+    :outline:
+%endif
+%endfor

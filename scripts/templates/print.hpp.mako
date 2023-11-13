@@ -173,12 +173,12 @@ template <typename T> inline ${x}_result_t printTagged(std::ostream &os, const v
     /// @returns
     ///     std::ostream &
     %if "api_version" in obj['name']:
-    inline std::ostream &operator<<(std::ostream &os, ${th.make_enum_name(n, tags, obj)} value) {
+    inline std::ostream &operator<<(std::ostream &os, enum ${th.make_enum_name(n, tags, obj)} value) {
         os << UR_MAJOR_VERSION(value) << "." << UR_MINOR_VERSION(value);
         return os;
     }
     %else:
-    inline std::ostream &operator<<(std::ostream &os, ${th.make_enum_name(n, tags, obj)} value) {
+    inline std::ostream &operator<<(std::ostream &os, enum ${th.make_enum_name(n, tags, obj)} value) {
         switch (value) {
             %for n, item in enumerate(obj['etors']):
                 <%
