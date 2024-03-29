@@ -9,7 +9,7 @@ order in each iteration trying to crash the application. There are some initial 
 in the corpus directory for reaching better coverage of tests.
 */
 
-#include "kernel_entry_points.h"
+// #include "kernel_entry_points.h"
 #include "ur_api.h"
 #include "utils.hpp"
 
@@ -359,9 +359,7 @@ int ur_program_create_with_il(TestState &state) {
     ur_event_handle_t event;
     auto &context = state.contexts[state.context_num]->handle;
     auto &device = state.devices[state.device_num];
-    std::string kernel_name =
-        uur::device_binaries::program_kernel_map["fill"][0];
-
+    std::string kernel_name = "simple";
     il_bin = state.load_kernel_source();
     if (il_bin.empty()) {
         return -1;
@@ -385,8 +383,8 @@ int ur_program_create_with_il(TestState &state) {
     urQueueFinish(queue);
     urQueueRelease(queue);
     urKernelRelease(kernel);
+    urMemRelease(memory_buffer);
     urProgramRelease(program);
-
     return 0;
 }
 

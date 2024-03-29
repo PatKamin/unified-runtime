@@ -38,8 +38,7 @@ function(add_fuzz_test name label)
         ENVIRONMENT "${ENV_VARS}")
     # TODO: Should we check if this sanitizer flag is available?
     target_compile_options(${TEST_TARGET_NAME} PRIVATE -g -fsanitize=fuzzer)
-    target_compile_definitions(${TEST_TARGET_NAME} PRIVATE -DKERNEL_IL_PATH="${UR_CONFORMANCE_DEVICE_BINARIES_DIR}/fill/sycl_spir64.spv")
-    target_include_directories(${TEST_TARGET_NAME} PRIVATE ${UR_CONFORMANCE_DEVICE_BINARIES_DIR})
+    target_compile_definitions(${TEST_TARGET_NAME} PRIVATE -DKERNEL_IL_PATH="${CMAKE_SOURCE_DIR}/simple.spv")
 
     add_dependencies(${TEST_TARGET_NAME} generate_device_binaries)
 endfunction()
