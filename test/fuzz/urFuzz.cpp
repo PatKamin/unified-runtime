@@ -365,22 +365,34 @@ int ur_program_create_with_il(TestState &state) {
         return -1;
     }
 
+    constexpr int a_size = 64;
+    std::vector<int> vec(a_size, 0);
+
     urProgramCreateWithIL(context, il_bin.data(), il_bin.size(), nullptr,
                           &program);
     urProgramBuild(context, program, nullptr);
+
+    ur_mem_handle_t memory_buffer;
+    urMemBufferCreate(context, UR_MEM_FLAG_READ_WRITE,
+                               a_size * sizeof(int), nullptr, &memory_buffer);
     urKernelCreate(program, kernel_name.data(), &kernel);
+    urKernelSetArgMemObj(kernel, 0, nullptr, memory_buffer);
+
     urQueueCreate(context, device, nullptr, &queue);
-
-    const uint32_t nDim = 3;
+    urEnqueueMemBufferWrite(queue, memory_buffer, true, 0, a_size * sizeof(int), vec.data(), 0, nullptr, nullptr);
+    
+    constexpr uint32_t nDim = 3;
     const size_t gWorkOffset[] = {0, 0, 0};
-    const size_t gWorkSize[] = {128, 128, 128};
+    const size_t gWorkSize[] = {a_size * 4, 1, 1};
+    const size_t lWorkSize[] = {1, 1, 1};
 
-    urEnqueueKernelLaunch(queue, kernel, nDim, gWorkOffset, gWorkSize, nullptr,
+    urEnqueueKernelLaunch(queue, kernel, nDim, gWorkOffset, gWorkSize, lWorkSize,
                           0, nullptr, &event);
 
     urEventWait(1, &event);
     urEventRelease(event);
     urQueueFinish(queue);
+    urMemRelease(memory_buffer);
     urQueueRelease(queue);
     urKernelRelease(kernel);
     urMemRelease(memory_buffer);
