@@ -54,3 +54,38 @@ foreach(file ${files})
     get_filename_component(filename ${file} NAME)
     add_fuzz_test(${filename} fuzz-short ${file})
 endforeach()
+
+function(add_simple_kernel_test)
+    set(TEST_TARGET_NAME simple_kernel)
+    add_ur_executable(${TEST_TARGET_NAME}
+        kernel_run.cpp)
+    target_link_libraries(${TEST_TARGET_NAME}
+        PRIVATE
+        ${PROJECT_NAME}::loader
+        ${PROJECT_NAME}::headers
+        ${PROJECT_NAME}::common)
+    add_test(NAME ${TEST_TARGET_NAME}
+        COMMAND ${TEST_TARGET_NAME} ${ARGN}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+
+    set(ENV_VARS UR_ENABLE_LAYERS=UR_LAYER_FULL_VALIDATION)
+    if(UR_BUILD_ADAPTER_L0 OR UR_BUILD_ADAPTER_ALL)
+        list(APPEND ENV_VARS
+                UR_ADAPTERS_FORCE_LOAD=\"$<TARGET_FILE:ur_adapter_level_zero>\"
+                NEOReadDebugKeys=1
+                DisableDeepBind=1)
+    endif()
+    if(UR_ENABLE_TRACING)
+        list(APPEND ENV_VARS
+                XPTI_TRACE_ENABLE=1
+                XPTI_FRAMEWORK_DISPATCHER=$<TARGET_FILE:xptifw>
+                XPTI_SUBSCRIBERS=$<TARGET_FILE:collector>
+                UR_ENABLE_LAYERS=UR_LAYER_TRACING)
+    endif()
+    set_tests_properties(${TEST_TARGET_NAME} PROPERTIES
+        LABELS "simple"
+        ENVIRONMENT "${ENV_VARS}")
+    target_compile_options(${TEST_TARGET_NAME} PRIVATE -g)
+endfunction()
+
+add_simple_kernel_test("${CMAKE_SOURCE_DIR}/simple.spv")
